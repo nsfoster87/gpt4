@@ -1,0 +1,11 @@
+{
+  "name": "gpt4",
+  "version": "1.0.0",
+  "description": "A simple gpt4 app",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Nate Foster",
+  "license": "ISC"
+}
