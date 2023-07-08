@@ -1,4 +1,4 @@
-const chatLog = document.getElementById('chat-log');
+const chatLog = document.querySelector('.chat-log');
 const message = document.getElementById('message');
 const form = document.querySelector('form');
 const messages = [];
@@ -16,6 +16,8 @@ const displayMessage = (text, role, targetElem) => {
   messageTextElement.classList.add('message-text');
   messageTextElement.textContent = text;
   messageElement.appendChild(messageTextElement);
+
+  chatLog.classList.remove('border-hidden');
 
   targetElem.appendChild(messageElement);
   targetElem.scrollTop = targetElem.scrollHeight;
