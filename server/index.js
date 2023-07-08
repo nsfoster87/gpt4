@@ -18,12 +18,13 @@ app.use(cors());
 
 app.post('/', async (req, res) => {
 
-  const { message } = req.body;
+  const { messages } = req.body;
 
   const completion = await openai.createChatCompletion({
     model: "gpt-3.5-turbo",
     messages: [
-      { role: "user", content: `${message}` },
+      { role: "system", content: "You are a helpful assistant wine pairing chatbot"},
+      ...messages
     ]
   });
 

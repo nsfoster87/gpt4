@@ -1,8 +1,13 @@
 const chatLog = document.getElementById('chat-log');
 const message = document.getElementById('message');
 const form = document.querySelector('form');
+const messages = [];
 
-const displayMessage = (text, className, targetElem) => {
+const displayMessage = (text, role, targetElem) => {
+  const newMessage = { role, content: `${text}` };
+  messages.push(newMessage);
+
+  const className = role === 'user' ? 'message-sent' : 'message-received';
   const messageElement = document.createElement('div');
   messageElement.classList.add('message');
   messageElement.classList.add(className);
@@ -22,13 +27,13 @@ form.addEventListener('submit', (e) => {
   const messageText = message.value;
   message.value = '';
 
-  displayMessage(messageText, 'message-sent', chatLog);
+  displayMessage(messageText, 'user', chatLog);
 
-  axios.post('http://localhost:3000', { message: messageText }, {
+  axios.post('http://localhost:3000', { messages }, {
     headers: {
       'Content-Type': 'application/json'
     },
   })
-  .then(res => displayMessage(res.data.completion.content, 'message-received', chatLog))
+  .then(res => displayMessage(res.data.completion.content, 'assistant', chatLog))
   .catch(err => console.log(err));
 });
