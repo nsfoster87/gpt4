@@ -15,11 +15,14 @@ const openai = new OpenAIApi(configuration);
 const app = express();
 app.use(bodyParser.json());
 
-app.get('/', async (req, res) => {
+app.post('/', async (req, res) => {
+
+  const { message } = req.body;
+
   const completion = await openai.createChatCompletion({
     model: "gpt-3.5-turbo",
     messages: [
-      { role: "user", content: "Hello World" },
+      { role: "user", content: `${message}` },
     ]
   });
 
