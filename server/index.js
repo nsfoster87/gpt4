@@ -14,6 +14,7 @@ const openai = new OpenAIApi(configuration);
 
 const app = express();
 app.use(bodyParser.json());
+app.use(cors());
 
 app.post('/', async (req, res) => {
 
